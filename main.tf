@@ -32,6 +32,23 @@ resource "google_storage_bucket" "codigo_bucket" {
     location = "US"
 }
 
+resource "google_project_service" "cloud_run_api" {
+  service            = "run.googleapis.com"
+  disable_on_destroy = false
+}
+
+# 2. Habilitar Cloud Build API (necesaria para compilar el código Python)
+resource "google_project_service" "cloud_build_api" {
+  service            = "cloudbuild.googleapis.com"
+  disable_on_destroy = false
+}
+
+# 3. Habilitar Artifact Registry API (donde se guardan los contenedores)
+resource "google_project_service" "artifact_registry_api" {
+  service            = "artifactregistry.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_storage_bucket_object" "codigo_objeto" {
     name = "function-${data.archive_file.codigo_zip.output_md5}.zip"
     bucket = google_storage_bucket.codigo_bucket.name
