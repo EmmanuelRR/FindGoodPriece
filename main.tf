@@ -27,7 +27,7 @@ resource "google_storage_bucket" "codigo_bucket" {
     location = "US"
 }
 
-resource "google_storage_bucket_objecto" "codigo_objecto" {
+resource "google_storage_bucket_object" "codigo_objecto" {
     name = "function-${data.archive_file.codigo_zip.output_md5}.zip"
     bucket = google_storage_bucket.codigo_bucket.name
     source = data.archive_file.codigo_zip.output_path
