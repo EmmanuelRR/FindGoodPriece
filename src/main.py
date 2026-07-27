@@ -322,13 +322,13 @@ def detectar_anomalias(request):
         if anomalia:
             print('Se encontró anomalia')
             searcher.enviar_alerta_telegram(lista_ano)
-            return 200
+            return 'Se encontró anomalia', 200
         else:
             print('No hay anomalia')
-            return 200
+            return 'No hay anomalia', 200
     except Exception as e:
         print(f'Se encontró el error {e}')
-        return 500
+        return 'ERROR', 500
 
 # Ejemplo de uso:
 if __name__ == "__main__":
