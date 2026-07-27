@@ -72,13 +72,13 @@ resource "google_cloudfunctions_function" "funcion_carros" {
     trigger_http = true
     entry_point = "detectar_anomalias"
 
-    secret_enviroment_variables {
+    secret_environment_variables {
         key = "GEMINI_API_KEY"
         secret = "google_secret_manager_secret.gemini_key.secret_id"
         version = "latest"
         project_id = var.project_id
     }
-    secret_enviroment_variables {
+    secret_environment_variables {
         key = "BOT_TOKEN"
         secret = "google_secret_manager_secret.bot_token.secret_id"
         version = "latest"
