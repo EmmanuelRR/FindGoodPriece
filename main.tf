@@ -14,6 +14,11 @@ variable "project_id" {}
 variable "gemini_api_key_secret" {}
 variable "bot_api_key_secret" {}
 
+variable "client_email" {
+  type        = string
+  description = "Email de la Service Account que ejecuta Terraform"
+}
+
 # Comprimir el codigo
 data "archive_file" "codigo_zip" {
     type = "zip"
@@ -61,7 +66,7 @@ resource "google_secret_manager_secret_version" "bot_token_version" {
 
 # crear y conectar los secretos a la cloud function
 
-resource "google_cloudfunctions_function" "funcion_carros" {
+resource "google_cloudfunctions2_function" "funcion_carros" {
     name = "detectar_anomalias"
     description = "Revisa precios de carros diariamente"
     runtime = "python310"
@@ -71,6 +76,7 @@ resource "google_cloudfunctions_function" "funcion_carros" {
     source_archive_object = google_storage_bucket_object.codigo_objeto.name
     trigger_http = true
     entry_point = "detectar_anomalias"
+    service_account_email = var.client_email
 
     secret_environment_variables {
         key = "GEMINI_API_KEY"

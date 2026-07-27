@@ -30,4 +30,5 @@ jobs:
                 TF_VAR_project_id: ${{secrets.GCP_PROJECT_ID}}
                 TF_VAR_gemini_api_key_secret: ${{secrets.GEMINI_API_KEY}}
                 TF_VAR_bot_api_key_secret: ${{secrets.BOT_TOKEN}}
+                TF_VAR_client_email: ${{ secrets.GCP_CLIENT_EMAIL }}
 
