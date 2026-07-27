@@ -27,7 +27,7 @@ resource "google_storage_bucket" "codigo_bucket" {
     location = "US"
 }
 
-resource "google_storage_bucket_object" "codigo_objecto" {
+resource "google_storage_bucket_object" "codigo_objeto" {
     name = "function-${data.archive_file.codigo_zip.output_md5}.zip"
     bucket = google_storage_bucket.codigo_bucket.name
     source = data.archive_file.codigo_zip.output_path
@@ -68,7 +68,7 @@ resource "google_cloudfunctions_function" "funcion_carros" {
 
     available_memory_mb = 256
     source_archive_bucket = google_storage_bucket.codigo_bucket.name
-    source_archive_object = google_storage_bucket_objecto.codigo_objecto.name
+    source_archive_object = google_storage_bucket_object.codigo_objeto.name
     trigger_http = True
     entry_point = "detectar_anomalias"
 
