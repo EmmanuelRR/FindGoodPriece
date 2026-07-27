@@ -37,7 +37,9 @@ resource "google_storage_bucket_objecto" "codigo_objecto" {
 
 resource "google_secret_manager_secret" "gemini_key" {
     secret_id = "gemini-api-key"
-    replication { auto {} }
+    replication { 
+        auto {} 
+    }
 }
 
 resource "google_secret_manager_secret_version" "gemini_key_version" {
@@ -47,7 +49,9 @@ resource "google_secret_manager_secret_version" "gemini_key_version" {
 
 resource "google_secret_manager_secret" "bot_token" {
     secret_id = "telegram-bot-token"
-    replication { auto {} }
+    replication { 
+        auto {} 
+    }
 }
 
 resource "google_secret_manager_secret_version" "bot_token_version" {
