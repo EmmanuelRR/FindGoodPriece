@@ -94,7 +94,7 @@ resource "google_cloud_scheduler_job" "programador_diario" {
 
     http_target {
         http_method = "GET"
-        uri = google_cloudfunctions_function.funcion_carros.http_trigger_url
+        uri = google_cloudfunctions_function.funcion_carros.https_trigger_url
         oidc_token {
             service_account_email = google_cloudfunctions_function.funcion_carros.service_account_email
         }
