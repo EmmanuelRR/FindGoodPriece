@@ -69,7 +69,7 @@ resource "google_cloudfunctions_function" "funcion_carros" {
     available_memory_mb = 256
     source_archive_bucket = google_storage_bucket.codigo_bucket.name
     source_archive_object = google_storage_bucket_object.codigo_objeto.name
-    trigger_http = True
+    trigger_http = true
     entry_point = "detectar_anomalias"
 
     secret_enviroment_variables {
